@@ -63,7 +63,7 @@ class RLModel():
         )
         
     def train(self, episodes=300, maxEpisoldeLen=-1, show=False):
-        bestScore = self.eval(episodes=10, silence=True)
+        bestScore = self.eval(episodes=10, silence=False, show=True)
         print("Average score is {}".format(bestScore))
 
         for i in range(1, episodes + 1):
@@ -85,7 +85,7 @@ class RLModel():
                     
             if i % 10 == 0:
                 print('episode:', i + 1, 'R:', R)                
-                score = self.eval(episodes=10, silence=True)
+                score = self.eval(episodes=10, silence=False, show=True)
                 if score > bestScore:
                     bestScore = score
                     print("Average score is {}".format(score))
@@ -147,7 +147,7 @@ def record(name):
     model.env.close()
     
 if __name__ == '__main__':
-    name = "CartPole-v0"
-    # train(name, show=False)
-    eval(name, show=True)
+    name = "MountainCar-v0"
+    train(name, show=False)
+    # eval(name, show=True)
     # record(name)
